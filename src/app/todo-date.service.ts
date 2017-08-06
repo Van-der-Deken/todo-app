@@ -4,7 +4,9 @@ import { Todo } from "./todo";
 
 @Injectable()
 export class TodoDateService {
-
+  private monthNames = ["january", "february", "march", "april", "may", "june",
+                        "july", "august", "september", "october", "november",
+                        "december"];
 
   constructor(private todoData: TodoDataService) { }
 
@@ -45,11 +47,19 @@ export class TodoDateService {
     }
   }
 
+  getMonthName(month: number): string {
+    return this.monthNames[month];
+  }
+
   private remainToDeadline(todoDate: Date, currentDate: Date): number {
+    console.log('test');
     var yearsDiff = Math.abs(todoDate.getFullYear() - currentDate.getFullYear());
     var monthsDiff = Math.abs(todoDate.getMonth() -  currentDate.getMonth());
     var daysDiff = Math.abs(todoDate.getDate() - currentDate.getDate());
-    var sign = Math.sign(todoDate.getTime() - currentDate.getTime());
-    return sign * (yearsDiff * 100 + monthsDiff * 10 + daysDiff);
+    if((yearsDiff + monthsDiff + daysDiff) != 0) {
+      return todoDate.getTime() - currentDate.getTime();
+    } else {
+      return 0;
+    }
   }
 }
