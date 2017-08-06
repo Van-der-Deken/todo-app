@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Todo } from './todo';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -16,10 +16,8 @@ export class ApiService {
 
   public getAllTodos(): Observable<Todo[]> {
     console.log('GET - ' + API_URL);
-    let headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
-    let options = new RequestOptions({ headers: headers });
     return this.http
-      .get(API_URL + '/todos', options)
+      .get(API_URL + '/todos')
       .map(response => {
         const todos = response.json();
         var output: Todo[] = todos.map((todo) => new Todo(todo));
