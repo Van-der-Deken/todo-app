@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { TodoDateService } from '../todo-date.service'
 import { Todo } from '../todo';
 
 @Component({
@@ -17,7 +18,7 @@ export class TodoListItemComponent {
   @Output()
   toggleComplete: EventEmitter<Todo> = new EventEmitter();
 
-  constructor() { }
+  constructor(private dateService: TodoDateService) { }
 
   toggleTodoComplete(todo: Todo) {
     this.toggleComplete.emit(todo);
@@ -27,58 +28,9 @@ export class TodoListItemComponent {
     this.remove.emit(todo);
   }
 
-  getDisplayableDate() {
-    var output : string = this.todo.failedAfter.getDate().toString();
-    switch(this.todo.failedAfter.getMonth()) {
-      case 0: {
-        output += ' january ';
-        break;
-      }
-      case 1: {
-        output += ' february ';
-        break;
-      }
-      case 2: {
-        output += ' march ';
-        break;
-      }
-      case 3: {
-        output += ' april ';
-        break;
-      }
-      case 4: {
-        output += ' may ';
-        break;
-      }
-      case 5: {
-        output += ' june ';
-        break;
-      }
-      case 6: {
-        output += ' july ';
-        break;
-      }
-      case 7: {
-        output += ' august ';
-        break;
-      }
-      case 8: {
-        output += ' september ';
-        break;
-      }
-      case 9: {
-        output += ' october ';
-        break;
-      }
-      case 10: {
-        output += ' november ';
-        break;
-      }
-      case 11: {
-        output += ' december ';
-        break;
-      }
-    }
-    return output += this.todo.failedAfter.getFullYear();
+  getDisplayableDate(): string {
+    return this.todo.failedAfter.getDate() + ' ' +
+            this.dateService.getMonthName(this.todo.failedAfter.getMonth()) +
+            ' ' + this.todo.failedAfter.getFullYear();
   }
 }
