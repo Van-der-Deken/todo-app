@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://van-der-deken.github.io/todo-app/db.json'
+  apiUrl: 'https://raw.githubusercontent.com/Van-der-Deken/todo-app/master/db.json'
 };
