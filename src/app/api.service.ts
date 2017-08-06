@@ -15,6 +15,7 @@ export class ApiService {
   constructor(private http: Http) { }
 
   public getAllTodos(): Observable<Todo[]> {
+    console.log('GET - ' + API_URL);
     return this.http
       .get(API_URL + '/todos')
       .map(response => {
@@ -29,6 +30,7 @@ export class ApiService {
   }
 
   public createTodo(todo: Todo) {
+    console.log('POST - ' + API_URL);
     return this.http.post(API_URL + '/todos', todo)
       .map(response => {
         var output: Todo = new Todo(response.json());
@@ -40,6 +42,7 @@ export class ApiService {
   }
 
   public getTodoById(todoId: number) {
+    console.log('GET - ' + API_URL);
     return this.http.get(API_URL + '/todos/' + todoId)
       .map(response => {
         var output: Todo = new Todo(response.json());
@@ -51,6 +54,7 @@ export class ApiService {
   }
 
   public updateTodo(todo: Todo) {
+    console.log('PUT - ' + API_URL);
     return this.http.put(API_URL + '/todos/' + todo.id, todo)
       .map(response => {
         var output: Todo = new Todo(response.json());
@@ -62,6 +66,7 @@ export class ApiService {
   }
 
   public deleteTodoById(todoId: number) {
+    console.log('DELETE - ' + API_URL);
     return this.http.delete(API_URL + '/todos/' + todoId)
       .map(response => null)
       .catch(this.handleError);
