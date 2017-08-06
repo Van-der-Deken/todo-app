@@ -1,6 +1,6 @@
 <div class="view">
   <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete" *ngIf="!todo.failed">
   <label id="todoText">{{todo.title}}</label>
-  <label class="todo-date">{{todo.getHumanReadableDate()}}</label>
+  <label class="todo-date">{{this.getDisplayableDate()}}</label>
   <button class="destroy" (click)="removeTodo(todo)"></button>
 </div>

@@ -10,7 +10,6 @@ import { TodoListHeaderComponent } from './todo-list-header/todo-list-header.com
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoListItemComponent } from './todo-list-item/todo-list-item.component';
 import { TodoListFooterComponent } from './todo-list-footer/todo-list-footer.component';
-import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,7 @@ import { ApiService } from './api.service';
     FormsModule,
     HttpModule
   ],
-  providers: [TodoDataService, TodoDateService, ApiService],
+  providers: [TodoDataService, TodoDateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

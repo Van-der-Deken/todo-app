@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TodoDateService } from '../todo-date.service';
 import { Todo } from '../todo';
 
 @Component({
@@ -8,16 +7,8 @@ import { Todo } from '../todo';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent {
-  private sortedTodos : Todo[];
-
   @Input()
-  set todos(todos: Todo[]) {
-    var currentDate = new Date();
-    this.sortedTodos = this.dateService.sortTodosByDeadlines(todos, currentDate);
-    this.dateService.checkForFailedTodos(this.sortedTodos, currentDate);
-  }
-
-  get todos(): Todo[] { return this.sortedTodos; }
+  todos: Todo[];
 
   @Output()
   remove: EventEmitter<Todo> = new EventEmitter();
@@ -25,7 +16,7 @@ export class TodoListComponent {
   @Output()
   toggleComplete: EventEmitter<Todo> = new EventEmitter();
 
-  constructor(private dateService: TodoDateService) { }
+  constructor() { }
 
   onToggleTodoComplete(todo: Todo) {
     this.toggleComplete.emit(todo);

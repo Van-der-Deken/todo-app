@@ -17,6 +17,10 @@ export class TodoListHeaderComponent {
   }
 
   addTodo() {
+    //Chosen date receiving as string, so it should be transformed to Date
+    if(typeof this.newTodo.failedAfter === 'string') {
+      this.newTodo.failedAfter = new Date(this.newTodo.failedAfter);
+    }
     this.add.emit(this.newTodo);
     this.newTodo = new Todo();
   }
