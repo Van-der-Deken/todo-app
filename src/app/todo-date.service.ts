@@ -52,7 +52,6 @@ export class TodoDateService {
   }
 
   private remainToDeadline(todoDate: Date, currentDate: Date): number {
-    console.log('test');
     var yearsDiff = Math.abs(todoDate.getFullYear() - currentDate.getFullYear());
     var monthsDiff = Math.abs(todoDate.getMonth() -  currentDate.getMonth());
     var daysDiff = Math.abs(todoDate.getDate() - currentDate.getDate());
